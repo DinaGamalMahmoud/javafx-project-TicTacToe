@@ -30,13 +30,8 @@ public class ServerController implements Initializable {
     private TableColumn statusColumn;
     @FXML
     private ObservableList<Player> data;
-    @FXML
-    private Button key;
     private ObservableList<Player> playersList = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -79,8 +74,7 @@ public class ServerController implements Initializable {
             ServerApp.server.allPlayers.entrySet().forEach((player) -> {
                 playersList.add(player.getValue());
                   tableView.setItems(playersList);
-            });
-          
+            });    
      //   }
     }
 }

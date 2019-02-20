@@ -12,11 +12,11 @@ import java.util.logging.Logger;
 
 
 public class Players {
-    public static DBConnection Obj = new DBConnection();
-    public static HashMap<String, Player> getAllPlayers() {
+    public static DBConnection con = new DBConnection();
+    public static HashMap<String, Player> allplayers() {
         HashMap<String, Player> hashmap = new HashMap<>();
         try {
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             Statement stmt = conn.createStatement();
             String queryString = "select * from players";
             ResultSet rs = stmt.executeQuery(queryString);
@@ -26,15 +26,15 @@ public class Players {
                 hashmap.put(rs.getString("username"), p);
             }
             stmt.close();
-            Obj.CloseConnection(conn);
+            con.CloseConnection(conn);
         } catch (SQLException ex) {
         }
         return hashmap;
     }
-    public static Player getPlayerInfo(String username) {
+    public static Player getplayer(String username) {
         Player player = new Player();
         try {
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             Statement stmt = conn.createStatement();
             String queryString = "SELECT * FROM players WHERE username = '" + username + "'";
             ResultSet rs = stmt.executeQuery(queryString);
@@ -43,14 +43,14 @@ public class Players {
                 player.setScore(rs.getInt("score"));
             }
             stmt.close();
-            Obj.CloseConnection(conn);
+            con.CloseConnection(conn);
         } catch (SQLException ex) {
         }
         return player;
     }
-    public static boolean playerExisted(String username) {
+    public static boolean isexitsed(String username) {
         try {
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             Statement stmt = conn.createStatement();
             String queryString = "select * from players where username ='" + username + "'";
             ResultSet rs = stmt.executeQuery(queryString);
@@ -58,17 +58,17 @@ public class Players {
                 return true;
             }
             stmt.close();
-            Obj.CloseConnection(conn);
+            con.CloseConnection(conn);
         } catch (SQLException ex) {
             Logger.getLogger(Players.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-    public static boolean playerAuth(String username, String password) {
+    public static boolean signin(String username, String password) {
         boolean validAuth = false;
-        if (playerExisted(username)) {
+        if (isexitsed(username)) {
             try {
-                Connection conn = Obj.Connection();
+                Connection conn = con.Connection();
                 Statement stmt = conn.createStatement();
                 String queryString = "select * from players where username ='" + username + "' and password='" + password + "'";
                 ResultSet rs = stmt.executeQuery(queryString);
@@ -76,51 +76,51 @@ public class Players {
                     validAuth = true;
                 }
                 stmt.close();
-                Obj.CloseConnection(conn);
+                con.CloseConnection(conn);
             } catch (SQLException ex) {
                 Logger.getLogger(Players.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return validAuth;
     }
-    public static boolean updateScoreWin(String username) {
+    public static boolean updatewin(String username) {
         try {
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             Statement stmt = conn.createStatement();
             String queryString = "UPDATE `players` SET `score`= score+10  WHERE username = '" + username + "' ";
             
             stmt.executeUpdate(queryString);
             stmt.close();
-            Obj.CloseConnection(conn);
+            con.CloseConnection(conn);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(Players.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
-    public static boolean updateScoreDraw(String username) {
+    public static boolean updatedraw(String username) {
         try {
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             Statement stmt = conn.createStatement();
             String queryString = "UPDATE `players` SET `score`= score+5  WHERE username = '" + username + "' ";
             
             stmt.executeUpdate(queryString);
             stmt.close();
-            Obj.CloseConnection(conn);
+            con.CloseConnection(conn);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(Players.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
-    public static synchronized boolean insertPlayer(String username,String password) {
+    public static synchronized boolean insertplayer(String username,String password) {
         try {
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             Statement stmt = conn.createStatement();
             String queryString = "INSERT INTO `players` ( `username`, `score`, `password`) VALUES ('" + username + "', '" + 0 + "', '" + password + "')";
             stmt.executeUpdate(queryString);
             stmt.close();
-            Obj.CloseConnection(conn);
+            con.CloseConnection(conn);
             return true;
         } catch (SQLException ex) {
             Logger.getLogger(Players.class.getName()).log(Level.SEVERE, null, ex);
@@ -130,13 +130,13 @@ public class Players {
     
     
     
-    public static SavedGame checkPaused(String userName1, String userName2) {
+    public static SavedGame checkpaused(String userName1, String userName2) {
         String sql = "SELECT * FROM SavedGame where Player1 = ? AND Player2 = ?";
         String sql2 = "Delete From SavedGame WHERE Player1 = ? AND Player2 = ?";
         SavedGame sg = new SavedGame();
         try {
             //con = this.connect();
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, userName1);
             pstmt.setString(2, userName2);
@@ -171,7 +171,7 @@ public class Players {
         String sql = "INSERT INTO SavedGame VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         try {
             //con = this.connect();
-            Connection conn = Obj.Connection();
+            Connection conn = con.Connection();
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, sg.player1);
             pstmt.setString(2, sg.player2);
@@ -190,7 +190,7 @@ public class Players {
     
      public static void main(String[] args){
         Player p = new Player();
-        p = Players.getPlayerInfo("dina");
+        p = Players.getplayer("dina");
    }
      
 }

@@ -12,7 +12,7 @@ import static server.network.Session.connectedPlayers;
 
 
 public class Server {
-    public static HashMap<String,Player> allPlayers = database.Players.getAllPlayers();
+    public static HashMap<String,Player> allPlayers = database.Players.allplayers();
     private int portNumber;
     private ServerSocket serverSocket;
     private Socket socket;
@@ -38,7 +38,7 @@ public class Server {
         running = false;
         Message notification = new Message(msgType.TERM);
         for(Map.Entry<String, Session> session : connectedPlayers.entrySet()){
-            session.getValue().sendMessage(notification);
+            session.getValue().sendmsg(notification);
         }
         try{
             serverSocket.close();
@@ -52,7 +52,6 @@ public class Server {
                     socket = serverSocket.accept();
                     new Session(socket);
                 }catch(IOException ioex){
-                    //error cannot accept connections anymore - limit exceeded
                 }
             }
         }).start();

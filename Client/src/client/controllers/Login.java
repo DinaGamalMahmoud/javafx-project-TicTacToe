@@ -22,7 +22,7 @@ import javafx.stage.Stage;
  *
  * @author seif
  */
-public class LoginController implements Initializable {
+public class Login implements Initializable {
     
     @FXML private Text actiontarget;
     @FXML private TextField txtf_password;

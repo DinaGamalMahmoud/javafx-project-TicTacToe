@@ -33,14 +33,13 @@ public class AIGame {
     int[][] board = new int[3][3];
     List<Point> availablePoints;
     String player = null;
-    Point computersMove;
+    Point compmove;
     
     public AIGame() {}
     public AIGame(String name) {
         player=name;
     }
-    public boolean isGameOver() {
-        //Game is over is someone has won, or board is full (draw)
+    public boolean gameover() {
         return (hasXWon() || hasOWon() || getAvailableStates().isEmpty());
     }
     public boolean hasXWon() {
@@ -57,13 +56,11 @@ public class AIGame {
     }
     public boolean hasOWon() {
         if ((board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] == 2) || (board[0][2] == board[1][1] && board[0][2] == board[2][0] && board[0][2] == 2)) {
-            // System.out.println("O Diagonal Win");
             return true;
         }
         for (int i = 0; i < 3; ++i) {
             if ((board[i][0] == board[i][1] && board[i][0] == board[i][2] && board[i][0] == 2)
                     || (board[0][i] == board[1][i] && board[0][i] == board[2][i] && board[0][i] == 2)) {
-                //  System.out.println("O Row or Column win");
                 return true;
             }
         }
@@ -82,7 +79,7 @@ public class AIGame {
         return availablePoints;
     }
     public void placeAMove(Point point, int player) {
-        board[point.x][point.y] = player;   //player = 1 for X, 2 for O
+        board[point.x][point.y] = player;  
     }
     public void takeHumanInput() {
         System.out.println("Your move: ");
@@ -95,10 +92,10 @@ public class AIGame {
         String stats = null;
         Point point = new Point(x, y);
         this.placeAMove(point, 2);
-        this.minimax(0, 1); //compter's trn  1 = compter 2 = user
-        placeAMove(this.computersMove, 1);
-        int x1 = this.computersMove.x;
-        int y1 = this.computersMove.y;
+        this.minimax(0, 1); 
+        placeAMove(this.compmove, 1);
+        int x1 = this.compmove.x;
+        int y1 = this.compmove.y;
         Message message=new Message(msgType.MOVE);
         message.setData("x", Integer.toString(x1));
         message.setData("y", Integer.toString(y1));
@@ -106,33 +103,33 @@ public class AIGame {
             message.setType(msgType.GAME_OVER);
             stats = "You lose !";
             message.setData("line", stats);
-            Session.connectedPlayers.get(player).sendMessage(message); 
+            Session.connectedPlayers.get(player).sendmsg(message); 
             
             ServerApp.server.allPlayers.get(player).setStatus(Status.ONLINE);
-            Session.connectedPlayers.get(player).pushNotification("status", Status.ONLINE);
+            Session.connectedPlayers.get(player).notify("status", Status.ONLINE);
             ServerApp.serverController.PlayersTable();
         } else if (this.hasOWon()) {
             message.setType(msgType.GAME_OVER);
             stats = "You win !";
             message.setData("line", stats);
-            Session.connectedPlayers.get(player).sendMessage(message); 
-        } else if (this.isGameOver() && !this.hasXWon()) {
+            Session.connectedPlayers.get(player).sendmsg(message); 
+        } else if (this.gameover() && !this.hasXWon()) {
             message.setType(msgType.GAME_OVER);
             stats = "Draw !";
             message.setData("line", stats);
-            Session.connectedPlayers.get(player).sendMessage(message); 
+            Session.connectedPlayers.get(player).sendmsg(message); 
           
-            database.Players.updateScoreDraw(player);
+            database.Players.updatedraw(player);
             int score = ServerApp.server.allPlayers.get(player).getScore();
             ServerApp.server.allPlayers.get(player).setScore(score+5);
-            Session.connectedPlayers.get(player).pushNotification("score", String.valueOf(score+5));
+            Session.connectedPlayers.get(player).notify("score", String.valueOf(score+5));
             
             ServerApp.server.allPlayers.get(player).setStatus(Status.ONLINE);
-            Session.connectedPlayers.get(player).pushNotification("status", Status.ONLINE);
+            Session.connectedPlayers.get(player).notify("status", Status.ONLINE);
             ServerApp.serverController.PlayersTable();
         } else {
             stats = "gameon";
-            Session.connectedPlayers.get(player).sendMessage(message); 
+            Session.connectedPlayers.get(player).sendmsg(message); 
         }
         return stats;
     }
@@ -146,7 +143,7 @@ public class AIGame {
 
         List<Point> pointsAvailable = getAvailableStates();
         if (pointsAvailable.isEmpty()) {
-            return 0;  // if list is emty so no available move ..retrn 
+            return 0;  
         }
         int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
 
@@ -162,7 +159,7 @@ public class AIGame {
                 }
                 if (currentScore >= 0) {
                     if (depth == 0) {
-                        computersMove = point;
+                        compmove = point;
                     }
                 }
                 if (currentScore == 1) {
@@ -171,7 +168,7 @@ public class AIGame {
                 }
                 if (i == pointsAvailable.size() - 1 && max < 0) {
                     if (depth == 0) {
-                        computersMove = point;
+                        compmove = point;
                     }
                 }
             } else if (turn == 2) {
@@ -183,7 +180,7 @@ public class AIGame {
                     break;
                 }
             }
-            board[point.x][point.y] = 0; //Reset this point
+            board[point.x][point.y] = 0; 
         }
         return turn == 1 ? max : min;
     }

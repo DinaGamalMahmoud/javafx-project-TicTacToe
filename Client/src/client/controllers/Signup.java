@@ -13,13 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
-public class SignupController implements Initializable {
+public class Signup implements Initializable {
     
     @FXML private Label label=new Label();
     @FXML private Text massage = new Text();

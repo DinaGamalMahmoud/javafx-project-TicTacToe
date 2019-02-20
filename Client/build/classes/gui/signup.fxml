@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="root" alignment="center" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.SignupController">
+    <padding> 
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+    <GridPane id="info" hgap="10" prefHeight="600" prefWidth="400" vgap="18" GridPane.columnIndex="2">
+        <padding>
+            <Insets bottom="10" left="0" right="10" top="30" />
+        </padding>
+        <Label text="User Name:" GridPane.rowIndex="6" />
+        <TextField fx:id="userName" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Label text="Password:" GridPane.rowIndex="7" />
+        <PasswordField fx:id="userPassword" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Label text="Confirm Password:" GridPane.rowIndex="8" /> 
+        <PasswordField fx:id="confirmPassword" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+         <Button onAction="#handleButton_back_Action" text="Back" textFill="#084315" GridPane.rowIndex="9" />
+         <Button defaultButton="true" onAction="#handleButtonAction" text="Sign up" textFill="#64a772" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <columnConstraints>
+         <ColumnConstraints />
+         <ColumnConstraints />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+   <GridPane>
+     <columnConstraints>
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+     </rowConstraints>
+      <children>
+         <ImageView fitHeight="241.0" fitWidth="277.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+            <image>
+               <Image url="@../images/52688497_238633727086773_4627865929030565888_n.png" />
+            </image>
+         </ImageView>
+      </children>
+   </GridPane>
+    <stylesheets>
+        <URL value="@../gui/signup.css" />
+    </stylesheets>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

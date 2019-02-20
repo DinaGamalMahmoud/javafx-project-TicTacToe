@@ -20,7 +20,7 @@ public class ServerApp extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         FXMLLoader serverLoader = new FXMLLoader();
-        serverLoader.setLocation(getClass().getResource("/views/ServerView.fxml"));
+        serverLoader.setLocation(getClass().getResource("/views/gui.fxml"));
         Parent serverParent = serverLoader.load();
         serverScene = new Scene(serverParent);
         serverController = (ServerController)serverLoader.getController();
@@ -34,9 +34,7 @@ public class ServerApp extends Application {
         });
     }
 
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String[] args) {
         launch(args);
     }

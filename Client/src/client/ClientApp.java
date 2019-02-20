@@ -3,7 +3,7 @@ package client;
 
 import client.network.Session;
 import client.controllers.*;
-import client.controllers.GameController;
+import client.controllers.Game;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -19,38 +19,34 @@ public class ClientApp extends Application {
     public static Scene signUp;
     public static Scene home;
     public static Scene game;
-    public static GameController gameController;
-    public static HomeController homeController;
-    public static LoginController loginController;
+    public static Game gameController;
+    public static Home homeController;
+    public static Login loginController;
     public static Session session;
 
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
 
-        //sign in
         FXMLLoader signInLoader = new FXMLLoader();
-        signInLoader.setLocation(getClass().getResource("/gui/LoginView.fxml"));
+        signInLoader.setLocation(getClass().getResource("/gui/login.fxml"));
         Parent signInParent = signInLoader.load();
         signIn = new Scene(signInParent, 700, 500);
-        loginController = (LoginController) signInLoader.getController();
-        //sign up
+        loginController = (Login) signInLoader.getController();
         FXMLLoader signUpLoader = new FXMLLoader();
-        signUpLoader.setLocation(getClass().getResource("/gui/SignupView.fxml"));
+        signUpLoader.setLocation(getClass().getResource("/gui/signup.fxml"));
         Parent signUpParent = signUpLoader.load();
         signUp = new Scene(signUpParent, 700, 500);
-        //home
-        FXMLLoader homeLoader = new FXMLLoader();
-        homeLoader.setLocation(getClass().getResource("/gui/HomeView.fxml"));
+         FXMLLoader homeLoader = new FXMLLoader();
+        homeLoader.setLocation(getClass().getResource("/gui/home.fxml"));
         Parent homeParent = homeLoader.load();
         home = new Scene(homeParent, 700, 500);
-        homeController = (HomeController) homeLoader.getController();
-        //game
+        homeController = (Home) homeLoader.getController();
         FXMLLoader gameLoader = new FXMLLoader();
-        gameLoader.setLocation(getClass().getResource("/gui/GameView.fxml"));
+        gameLoader.setLocation(getClass().getResource("/gui/game.fxml"));
         Parent gameParent = gameLoader.load();
         game = new Scene(gameParent, 900, 600);
-        gameController = (GameController) gameLoader.getController();
+        gameController = (Game) gameLoader.getController();
 
         stage.setTitle("Game");
         stage.setScene(signIn);
@@ -66,17 +62,17 @@ public class ClientApp extends Application {
         });
     }
     
-            public Scene game(){
+          public Scene game() {
         try {
             FXMLLoader gameLoader = new FXMLLoader();
-            gameLoader.setLocation(getClass().getResource("/gui/GameView.fxml"));
+            gameLoader.setLocation(getClass().getResource("/gui/game.fxml"));
             Parent gameParent = gameLoader.load();
             game = new Scene(gameParent, 900, 600);
         } catch (IOException ex) {
         }
-                    return game;
+        return game;
 
-            }
+    }
    
     public static void main(String[] args) {
         launch(args);

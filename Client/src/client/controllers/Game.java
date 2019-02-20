@@ -25,7 +25,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.GridPane;
 import javax.imageio.ImageIO;
 
-public class GameController implements Initializable {
+public class Game implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -46,7 +46,7 @@ public class GameController implements Initializable {
     }   
     public void resetScene(){
         player1Name.setText(ClientApp.session.player.getUsername());
-        player2Name.setText(ClientApp.session.getOpponentName());
+        player2Name.setText(ClientApp.session.getname());
         flag1=flag2=flag3=flag4=flag5=flag6=flag7=flag8=flag9=0;
     }
     @FXML protected void handleButton_send_Action(ActionEvent event) {

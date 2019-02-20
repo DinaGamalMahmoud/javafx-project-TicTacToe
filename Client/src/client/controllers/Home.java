@@ -28,7 +28,7 @@ import javafx.stage.Stage;
 
 
 
-public class HomeController implements Initializable {
+public class Home implements Initializable {
 
 
     

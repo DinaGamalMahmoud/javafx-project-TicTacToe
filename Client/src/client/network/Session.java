@@ -395,7 +395,7 @@ public class Session {
     }
 
 
-public String getOpponentName(){
+public String getname(){
         if(player2 == null)
             return player1;
         return player2;
