@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Server.jar" size="32635" download="eager" />
+    <jar href="Server.jar" size="32544" download="eager" />
     <jar href="lib/mysql-connector-java-5.1.6.jar" size="703265" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Server" >

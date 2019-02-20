@@ -1,7 +1,7 @@
 
 package client.controllers;
 
-import client.ClientApp;
+import client.Client;
 import client.network.Session;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,20 +40,20 @@ public class Signup implements Initializable {
             alert.setContentText("retype the password");
             alert.showAndWait();
         }else{
-            if(ClientApp.session == null){
-                ClientApp.session = new Session("192.168.1.98", 5555);
+            if(Client.session == null){
+                Client.session = new Session("192.168.1.98", 5555);
             }
-            ClientApp.session.openConnection();
-            if(ClientApp.session.connected){
-                boolean regResult = ClientApp.session.signup(userName.getText(), userPassword.getText());
+            Client.session.openConnection();
+            if(Client.session.connected){
+                boolean regResult = Client.session.signup(userName.getText(), userPassword.getText());
                 if(regResult){
                     Alert success = new Alert(AlertType.INFORMATION);
                     success.setTitle("Registration succeded!");
                     success.setContentText("Congratulations!");
                     success.showAndWait();
-                    ClientApp.primarystage.hide();
-                    ClientApp.primarystage.setScene(client.ClientApp.signin);
-                    ClientApp.primarystage.show();
+                    Client.primarystage.hide();
+                    Client.primarystage.setScene(client.Client.signin);
+                    Client.primarystage.show();
                 }else{
                     alert.setContentText(" username already existed!");
                     alert.showAndWait();
@@ -62,7 +62,7 @@ public class Signup implements Initializable {
                 alert.setContentText("connection can't completed with server");
                 alert.showAndWait();
             }
-            ClientApp.session.closeConnection();
+            Client.session.closeConnection();
         }
     }
    

@@ -31,7 +31,7 @@ public class Server {
         this.portNumber = portNumber;
         running = runServer();
         if(running)
-            startCommunication();
+            start();
         return running;
     }
     public void stopServer(){
@@ -45,7 +45,7 @@ public class Server {
         }catch(IOException ioex){
         }
     }
-    private void startCommunication(){
+    private void start(){
         new Thread(()->{
             while(running){
                 try{

@@ -12,43 +12,39 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
-public class ServerController implements Initializable {
+public class Controlserver implements Initializable {
 
     @FXML
     private TableView<Player> tableView;
     @FXML
-    private TableColumn loginColumn;
+    private TableColumn login;
     @FXML
-    private TableColumn scoreColumn;
+    private TableColumn score;
     @FXML
-    private TableColumn statusColumn;
-    @FXML
-    private ObservableList<Player> data;
+    private TableColumn status;
     private ObservableList<Player> playersList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        loginColumn.setCellValueFactory(
+        login.setCellValueFactory(
                 new PropertyValueFactory<>("username")
         );
-        scoreColumn.setCellValueFactory(
+        score.setCellValueFactory(
                 new PropertyValueFactory<>("score")
         );
-        statusColumn.setCellValueFactory(
+        status.setCellValueFactory(
                 new PropertyValueFactory<>("status")
         );
-        data = FXCollections.observableArrayList();
     }
 
     @FXML
-    protected void handleToggleOnAction(ActionEvent t) {
+    protected void turnon(ActionEvent t) {
         if (!ServerApp.server.running) {
             if (ServerApp.server.startServer(5555)) {
                 PlayersTable();

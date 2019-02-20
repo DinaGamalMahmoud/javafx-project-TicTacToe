@@ -62,6 +62,15 @@ public class Session extends Thread{
         }catch(IOException ex){
         }
     }
+    private void startconnection(){
+        for(Map.Entry<String, Player> player : allPlayers.entrySet()){
+            Message message = new Message(msgType.INIT);
+            message.setData("username", player.getValue().getUsername());
+            message.setData("score", String.valueOf(player.getValue().getScore()));
+            message.setData("status", player.getValue().getStatus());
+            this.sendmsg(message);
+        }
+    }
     private void msghandle(Message message){
         switch(message.getType()){
             case LOGIN:
@@ -80,7 +89,7 @@ public class Session extends Thread{
                 respondGame(message);
                 break;
             case AIGAME :
-                AIrequestGame();
+                AIgame();
                 break;
             case MOVE:
                 handleMove(message);
@@ -167,15 +176,7 @@ public class Session extends Thread{
         });
         ServerApp.serverController.PlayersTable();
     }
-    private void startconnection(){
-        for(Map.Entry<String, Player> player : allPlayers.entrySet()){
-            Message message = new Message(msgType.INIT);
-            message.setData("username", player.getValue().getUsername());
-            message.setData("score", String.valueOf(player.getValue().getScore()));
-            message.setData("status", player.getValue().getStatus());
-            this.sendmsg(message);
-        }
-    }
+    
     private void showplayer(Player newPlayer){
         connectedPlayers.entrySet().forEach((session) -> {
             Message message = new Message(msgType.INIT);
@@ -185,7 +186,6 @@ public class Session extends Thread{
         });
     }
     public void requestGame(Message incoming){
-        //handle request from client 1 and forward it to client2
         Message outgoing=new Message(msgType.GAME_REQUEST,"source",player.getUsername());
         if(connectedPlayers.containsKey(incoming.getData("destination"))){
             connectedPlayers.get(incoming.getData("destination")).sendmsg(outgoing);
@@ -246,7 +246,7 @@ public class Session extends Thread{
             connectedPlayers.get(incoming.getData("destination")).sendmsg(outgoing);        
         }
     }
-    private void AIrequestGame(){
+    private void AIgame(){
         aiGame = new AIGame(player.getUsername());
         ServerApp.server.allPlayers.get(player.getUsername()).setStatus(Status.PLAYING);
         Session.connectedPlayers.get(player.getUsername()).notify("status", Status.PLAYING);

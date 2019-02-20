@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import server.controllers.ServerController;
+import server.controllers.Controlserver;
 import server.network.Server;
 
 
@@ -14,7 +14,7 @@ public class ServerApp extends Application {
     public static Server server = new Server();
     public static Stage primaryStage ;
     public static Scene serverScene;
-    public static ServerController serverController;
+    public static Controlserver serverController;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -23,7 +23,7 @@ public class ServerApp extends Application {
         serverLoader.setLocation(getClass().getResource("/views/gui.fxml"));
         Parent serverParent = serverLoader.load();
         serverScene = new Scene(serverParent);
-        serverController = (ServerController)serverLoader.getController();
+        serverController = (Controlserver)serverLoader.getController();
         stage.setTitle("TicTacToe Server");
         stage.setScene(serverScene);
         stage.show();

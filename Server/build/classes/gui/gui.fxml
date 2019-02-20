@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="window" alignment="center" hgap="10" prefHeight="561.0" prefWidth="548.0" vgap="10" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.controllers.ServerController">
+    <padding>
+        <Insets bottom="25" left="25" right="25" top="25" />
+    </padding>
+    <ImageView fitHeight="120" fitWidth="383.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <image>
+            <Image url="@../views/sf-logo.png" />
+        </image>
+    </ImageView>
+    <TableView fx:id="tableView" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+        <columns>
+            <TableColumn fx:id="loginColumn" prefWidth="152.0" text="user name" />
+            <TableColumn fx:id="scoreColumn" prefWidth="134.0" text="score" />
+            <TableColumn fx:id="statusColumn" prefWidth="211.0" text="status" />
+        </columns>
+    </TableView>
+        <Button fx:id="key" onAction="#handleToggleOnAction" prefHeight="39.0" prefWidth="98.0" text="turn on/off " GridPane.columnIndex="2" GridPane.rowIndex="1" /> 
+    <stylesheets>
+        <URL value="@../style/server.css" />
+    </stylesheets>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>

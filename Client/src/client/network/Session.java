@@ -34,9 +34,9 @@ public class Session {
     public boolean IAmX = false;
     public boolean myTurn;
     private Button[][] btns = {
-        {ClientApp.gameController.b1, ClientApp.gameController.b2, ClientApp.gameController.b3},
-        {ClientApp.gameController.b4, ClientApp.gameController.b5, ClientApp.gameController.b6},
-        {ClientApp.gameController.b7, ClientApp.gameController.b8, ClientApp.gameController.b9}};
+        {Client.gameController.b1, Client.gameController.b2, Client.gameController.b3},
+        {Client.gameController.b4, Client.gameController.b5, Client.gameController.b6},
+        {Client.gameController.b7, Client.gameController.b8, Client.gameController.b9}};
 
     public Session(String ipAddress, int portNumber) {
         this.ipAddress = ipAddress;
@@ -68,8 +68,8 @@ public class Session {
     public void endconnection() {
         closeConnection();
         Platform.runLater(() -> {
-            ClientApp.primarystage.setScene(ClientApp.signin);
-            ClientApp.loginController.endconnection();
+            Client.primarystage.setScene(Client.signin);
+            Client.loginController.endconnection();
         });
     }
 
@@ -203,11 +203,11 @@ public class Session {
                         break;
                 }
             }
-            Platform.runLater(ClientApp.homeController::PlayersTable);
+            Platform.runLater(Client.homeController::PlayersTable);
         } else {
             if (message.getType() == msgType.NOTIFY && message.getData("key").equals("score")) {
                 player.setScore(Integer.parseInt(message.getData("value")));
-                Platform.runLater(ClientApp.homeController::player);
+                Platform.runLater(Client.homeController::player);
             }
         }
     }
@@ -228,7 +228,7 @@ public class Session {
     public void respond(Message incoming) {
         player1 = incoming.getData("source");
         Platform.runLater(() -> {
-            ClientApp.homeController.alert(player1);
+            Client.homeController.alert(player1);
         });
     }
 
@@ -239,9 +239,9 @@ public class Session {
             myTurn = true;
             player2 = incoming.getData("source");
             Platform.runLater(() -> {
-                ClientApp.primarystage.setScene(client.ClientApp.game);
-                ClientApp.gameController.resetScene();
-                ClientApp.gameController.img = new Image(Session.this.getClass().getResourceAsStream("/images/x.png"));
+                Client.primarystage.setScene(client.Client.game);
+                Client.gameController.resetScene();
+                Client.gameController.img = new Image(Session.this.getClass().getResourceAsStream("/images/x.png"));
             });
         } else {
             //other player rejected request
@@ -249,13 +249,13 @@ public class Session {
     }
 
     public void AI() {
-        ClientApp.gameController.resetScene();
+        Client.gameController.resetScene();
         sendMessage(new Message(msgType.AIGAME));
         player1 = player.getUsername();
         player2 = "computer";
         IAmX = true;
         myTurn = true;
-        ClientApp.gameController.img = new Image(getClass().getResourceAsStream("/images/x.png"));
+        Client.gameController.img = new Image(getClass().getResourceAsStream("/images/x.png"));
     }
 
     public void move(String x, String y) {
@@ -278,27 +278,27 @@ public class Session {
             btns[Integer.parseInt(message.getData("x"))][Integer.parseInt(message.getData("y"))].setGraphic(new ImageView(IAmX ? "/images/o.png" : "/images/x.png"));
             if (Integer.parseInt(message.getData("x")) == 0) {
                 if (Integer.parseInt(message.getData("y")) == 0) {
-                    ClientApp.gameController.flag1 = 1;
+                    Client.gameController.flag1 = 1;
                 } else if (Integer.parseInt(message.getData("y")) == 1) {
-                    ClientApp.gameController.flag2 = 1;
+                    Client.gameController.flag2 = 1;
                 } else {
-                    ClientApp.gameController.flag3 = 1;
+                    Client.gameController.flag3 = 1;
                 }
             } else if (Integer.parseInt(message.getData("x")) == 1) {
                 if (Integer.parseInt(message.getData("y")) == 0) {
-                    ClientApp.gameController.flag4 = 1;
+                    Client.gameController.flag4 = 1;
                 } else if (Integer.parseInt(message.getData("y")) == 1) {
-                    ClientApp.gameController.flag5 = 1;
+                    Client.gameController.flag5 = 1;
                 } else {
-                    ClientApp.gameController.flag6 = 1;
+                    Client.gameController.flag6 = 1;
                 }
             } else {
                 if (Integer.parseInt(message.getData("y")) == 0) {
-                    ClientApp.gameController.flag7 = 1;
+                    Client.gameController.flag7 = 1;
                 } else if (Integer.parseInt(message.getData("y")) == 1) {
-                    ClientApp.gameController.flag1 = 8;
+                    Client.gameController.flag1 = 8;
                 } else {
-                    ClientApp.gameController.flag9 = 1;
+                    Client.gameController.flag9 = 1;
                 }
             }
         });
@@ -329,9 +329,9 @@ public class Session {
                             btns[i][j].setGraphic(new ImageView("/images/empty.png"));
                         }
                     }
-                    ClientApp.primarystage.hide();
-                    ClientApp.primarystage.setScene(client.ClientApp.home);
-                    ClientApp.primarystage.show();
+                    Client.primarystage.hide();
+                    Client.primarystage.setScene(client.Client.home);
+                    Client.primarystage.show();
                 }
             } else {
                 Alert alert = new Alert(AlertType.INFORMATION, msg, new ButtonType("Ok", ButtonData.OK_DONE));
@@ -345,9 +345,9 @@ public class Session {
                             btns[i][j].setGraphic(new ImageView("/images/empty.png"));
                         }
                     }
-                    ClientApp.primarystage.hide();
-                    ClientApp.primarystage.setScene(client.ClientApp.home);
-                    ClientApp.primarystage.show();
+                    Client.primarystage.hide();
+                    Client.primarystage.setScene(client.Client.home);
+                    Client.primarystage.show();
                 }
             }
         });
@@ -362,9 +362,9 @@ public class Session {
         alert.setContentText(msg);
         alert.showAndWait();
         if (alert.getResult().getButtonData() == ButtonData.OK_DONE) {
-            ClientApp.primarystage.hide();
-            ClientApp.primarystage.setScene(client.ClientApp.home);
-            ClientApp.primarystage.show();
+            Client.primarystage.hide();
+            Client.primarystage.setScene(client.Client.home);
+            Client.primarystage.show();
         }
     }
 
@@ -378,7 +378,7 @@ public String getname(){
  public void chat(Message message) {
         Platform.runLater(() -> {
             String msg = "@" + message.getData("sender") + ": " + message.getData("text") + "\n";
-            ClientApp.gameController.para.appendText(msg);
+            Client.gameController.para.appendText(msg);
         });
     }
 

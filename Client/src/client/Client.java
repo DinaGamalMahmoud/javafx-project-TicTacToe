@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 
-public class ClientApp extends Application {
+public class Client extends Application {
 
     public static Stage primarystage;
     public static Scene signin;

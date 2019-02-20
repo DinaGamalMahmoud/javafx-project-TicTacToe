@@ -1,8 +1,8 @@
 
 package client.controllers;
 
-import client.ClientApp;
-import static client.ClientApp.game;
+import client.Client;
+import static client.Client.game;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -45,73 +45,73 @@ public class Game implements Initializable {
         para.setWrapText(true);
     }   
     public void resetScene(){
-        player1Name.setText(ClientApp.session.player.getUsername());
-        player2Name.setText(ClientApp.session.getname());
+        player1Name.setText(Client.session.player.getUsername());
+        player2Name.setText(Client.session.getname());
         flag1=flag2=flag3=flag4=flag5=flag6=flag7=flag8=flag9=0;
     }
     @FXML protected void send(ActionEvent event) {
-        ClientApp.session.send(text.getText());
+        Client.session.send(text.getText());
         text.setText("");
     }
     @FXML protected void button1(ActionEvent event) {
-        if(flag1==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("0", "0");
+        if(flag1==0 && Client.session.myTurn){
+            Client.session.move("0", "0");
             b1.setGraphic(new ImageView(img));
             flag1=1;
         }
     }
     @FXML protected void button2(ActionEvent event) {
-        if(flag2==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("0", "1");        
+        if(flag2==0 && Client.session.myTurn){
+            Client.session.move("0", "1");        
             b2.setGraphic(new ImageView(img));
             flag2=1;
         }
     }
     @FXML protected void button3(ActionEvent event) {
-        if(flag3==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("0", "2");
+        if(flag3==0 && Client.session.myTurn){
+            Client.session.move("0", "2");
             b3.setGraphic(new ImageView(img));
             flag3=1;
         }
     }
     @FXML protected void button4(ActionEvent event) {
-        if(flag4==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("1", "0");
+        if(flag4==0 && Client.session.myTurn){
+            Client.session.move("1", "0");
             b4.setGraphic(new ImageView(img));
             flag4=1;
         }
     }
     @FXML protected void button5(ActionEvent event) {
-        if(flag5==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("1", "1");
+        if(flag5==0 && Client.session.myTurn){
+            Client.session.move("1", "1");
             b5.setGraphic(new ImageView(img));
             flag5=1;
         }
     }
     @FXML protected void button6(ActionEvent event) {
-        if(flag6==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("1", "2");
+        if(flag6==0 && Client.session.myTurn){
+            Client.session.move("1", "2");
             b6.setGraphic(new ImageView(img));
             flag6=1;
         }
     }
     @FXML protected void button7(ActionEvent event) {
-       if(flag7==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("2", "0");
+       if(flag7==0 && Client.session.myTurn){
+            Client.session.move("2", "0");
             b7.setGraphic(new ImageView(img));
             flag7=1;
         }
     }
     @FXML protected void button8(ActionEvent event) {
-       if(flag8==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("2", "1");
+       if(flag8==0 && Client.session.myTurn){
+            Client.session.move("2", "1");
             b8.setGraphic(new ImageView(img));
             flag8=1;
         }
     }
     @FXML protected void button9(ActionEvent event) {
-        if(flag9==0 && ClientApp.session.myTurn){
-            ClientApp.session.move("2", "2");
+        if(flag9==0 && Client.session.myTurn){
+            Client.session.move("2", "2");
             b9.setGraphic(new ImageView(img));
             flag9=1;
         }
@@ -119,7 +119,7 @@ public class Game implements Initializable {
     
     @FXML protected void pause(ActionEvent event) {
         
-            ClientApp.session.pause();
+            Client.session.pause();
     }
    
   @FXML  public void saveAsPng() {
