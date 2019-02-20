@@ -121,9 +121,7 @@ public class Session {
             case PAUSE:
                 handlePause();
                 break;
-            default:
-                // unhandled message type
-                break;
+           
         }
     }
 
@@ -238,13 +236,11 @@ public class Session {
     }
 
     public void requestGame(String secondPlayerName) {
-        //**ALERT** waiting for other player response with cancel button
         Message message = new Message(msgType.GAME_REQUEST, "destination", secondPlayerName);
         sendMessage(message);
     }
 
     public void respondToRequest(Message incoming) {
-        //**Alert** with the request from **playerRequestingGame** returns boolean **accept**
         player1 = incoming.getData("source");
         Platform.runLater(() -> {
             ClientApp.homeController.showAlert(player1);
@@ -330,7 +326,6 @@ public class Session {
     }
 
     private void handleGameOver(Message message) {
-        //**ALERT**win msg **play again(GAME_REQUEST) **home scene.
         Platform.runLater(() -> {
             if (message.getData("line").equals("You lose !") || message.getData("line").equals("Draw !")) {
                 btns[Integer.parseInt(message.getData("x"))][Integer.parseInt(message.getData("y"))].setGraphic(new ImageView(IAmX ? "/images/o.png" : "/images/x.png"));
