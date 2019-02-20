@@ -1,0 +1,138 @@
+
+.mainFxmlClass {
+       -fx-background-image: url("../images/wood2.jpg") ;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position:left  ;
+     -fx-margin-top: 50px;
+}
+
+#opponent{
+     
+ 
+     -fx-background-repeat: no-repeat;
+     
+      -fx-background-size:stretch;
+     -fx-margin-top: 50px;
+}
+.label{
+    
+     -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: whitesmoke;
+
+}
+.button {
+   -fx-background-color: 
+         linear-gradient(#298040, #64a772),
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040 0%, #429657 50%, #64a772 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 15;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #bf285c;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-Top:50px;
+   
+}
+.button:hover {
+     -fx-background-color:linear-gradient(#298040, #64a772),linear-gradient(#298040, #64a772);
+}
+#palyerImg{
+    -fx-border-width: 2;
+    -fx-border-color: gray;
+    -fx-background-color: gainsboro;
+    
+}
+#human{
+   
+     -fx-background-repeat: no-repeat;
+     
+      -fx-background-size:stretch;
+     -fx-margin-top: 50px;
+}
+
+#computer{
+    -fx-border-width: 2;
+    -fx-border-color: gray;
+    -fx-background-color: gainsboro;
+}
+
+#opponentImg{
+    
+}
+#playerName{
+    -fx-font-size: 25px;
+   -fx-font-family: "Arial Black";
+   -fx-font-weight: bold;
+   -fx-text-fill: whitesmoke;
+
+}
+#opponentName{
+    -fx-font-size: 25px;
+   -fx-font-family: "Arial Black";
+   -fx-font-weight: bold;
+   -fx-text-fill:whitesmoke;
+
+}
+#lbl,#playerScore,#opponentScore{
+    -fx-font-size: 20px;
+   -fx-font-family: "Arial Black";
+   -fx-font-weight: bold;
+   -fx-fill: white;
+
+}
+#arcade{
+    -fx-background-color: 
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040 0%, #429657 50%, #64a772 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 15;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #bf285c;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-Top:50px;
+    
+}
+#arcade:hover {
+    
+     -fx-background-color:   linear-gradient(#298040, #64a772),   linear-gradient(#298040, #64a772);
+}
+#invite{
+    -fx-background-color: 
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040, #64a772),
+        linear-gradient(#298040 0%, #429657 50%, #64a772 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 15;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #bf285c;
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-Top:50px;
+}
+#invite:hover {
+    
+      -fx-background-color:   linear-gradient(#298040, #64a772),   linear-gradient(#298040, #64a772);
+
+}
+#img{
+     -fx-background-radius:50,50;	
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+#opponentImgView{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-radius:50,50;
+}
+#playerImgView{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-border-radius:50,50;
+}

@@ -1,0 +1,121 @@
+
+
+.mainFxmlClass {
+    
+
+}
+#GridPane2 {
+    
+  -fx-background-image: url("../images/wood2.jpg") ;
+     -fx-background-repeat: no-repeat;
+     -fx-background-position:left  ;
+     -fx-margin-top: 50px;  
+    
+}
+#chat{
+    
+}
+#info{
+   
+     
+}
+#buttons{
+    -fx-background-image: url("../images/board2.png") ;
+     -fx-background-repeat: no-repeat;
+     -fx-background-size:stretch;
+     -fx-halignment: center;
+  -fx-valignment: center;
+ -fx-background-position: center;
+
+    
+}
+.label{
+    
+     -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill:white;
+}
+#send,#surrend {
+    -fx-background-color: 
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+                linear-gradient(#d0747a 0%, #d0747a 50%, #d0747a 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 15;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-Top:50px;
+   
+}
+#send:hover ,#surrend:hover {
+     -fx-background-color: linear-gradient(#ffea6a, #efaa22),linear-gradient(#ffd65b, #e68400);
+}
+#screenShot{
+    -fx-background-color: 
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+                linear-gradient(#d0747a 0%, #d0747a 50%, #d0747a 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 15;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-Top:50px;
+}
+#screenShot:hover ,#screenShot:hover {
+     -fx-background-color: linear-gradient(#ffea6a, #efaa22),linear-gradient(#ffd65b, #e68400);
+}
+#pause{
+    -fx-background-color: 
+        linear-gradient(#ffd65b, #e68400),
+        linear-gradient(#ffef84, #f2ba44),
+        linear-gradient(#ffea6a, #efaa22),
+                linear-gradient(#d0747a 0%, #d0747a 50%, #d0747a 100%),
+        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+    -fx-background-radius: 15;
+    -fx-background-insets: 0,1,2,3,0;
+    -fx-text-fill: #654b00;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 10 10 10 10;
+    -fx-margin-Top:50px;
+}
+#pause:hover ,#pause:hover {
+     -fx-background-color: linear-gradient(#ffea6a, #efaa22),linear-gradient(#ffd65b, #e68400);
+}
+
+#b1,#b2,#b3,#b4,#b5,#b6,#b7,#b8,#b9{
+    
+   -fx-graphic: url("../images/null.png");
+   -fx-background-color: transparent;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center;
+ -fx-background-size:cover;
+  
+}
+#player1Name{
+    -fx-text-fill: whitesmoke;
+    
+
+}
+#player2Name{
+    -fx-text-fill: whitesmoke;
+
+}
+#massge{
+     -fx-text-fill: whitesmoke;
+
+    
+}
+#vs{
+     -fx-text-fill:whitesmoke ;
+
+
+}
