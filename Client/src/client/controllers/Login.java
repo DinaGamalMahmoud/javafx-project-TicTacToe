@@ -17,27 +17,26 @@ import javafx.stage.Stage;
 
 public class Login implements Initializable {
     
-    @FXML private Text actiontarget;
-    @FXML private TextField txtf_password;
-    @FXML private TextField txtf_userName;
+    @FXML private TextField password;
+    @FXML private TextField username;
     private Stage primaryStage;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        primaryStage = ClientApp.primaryStage;
+        primaryStage = ClientApp.primarystage;
     }
-    @FXML protected void handleSignInButtonAction(ActionEvent event) {
+    @FXML protected void login(ActionEvent event) {
         if(ClientApp.session == null){
             ClientApp.session = new Session("192.168.1.98", 5555);
         }
         ClientApp.session.openConnection();
         if(ClientApp.session.connected){
-            if(ClientApp.session.loginToServer(txtf_userName.getText(), txtf_password.getText())){
+            if(ClientApp.session.login(username.getText(), password.getText())){
                 primaryStage.hide();
                 primaryStage.setScene(client.ClientApp.home);
                 primaryStage.show();
                 ClientApp.homeController.PlayersTable();
-                ClientApp.homeController.playerInfo();
+                ClientApp.homeController.player();
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("TicTacToe");
@@ -53,12 +52,12 @@ public class Login implements Initializable {
             alert.showAndWait();
         }
     }
-    @FXML protected void handleSignUpButtonAction(ActionEvent event) {
+    @FXML protected void signup(ActionEvent event) {
         primaryStage.hide();
-        primaryStage.setScene(client.ClientApp.signUp);
+        primaryStage.setScene(client.ClientApp.signup);
         primaryStage.show();
     }
-    public void terminateConnectino(){
+    public void endconnection(){
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Connection lost");
         alert.setHeaderText("Server disconnected!");

@@ -28,16 +28,16 @@ public class Signup implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {}
     
-    @FXML private void handleButtonAction(ActionEvent event) {
+    @FXML private void signin(ActionEvent event) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Registration error!");
         if( userName.getText().equals("") || 
             userPassword.getText().equals("") ||
             confirmPassword.getText().equals("") ){
-            alert.setContentText("Please complete all your information!");
+            alert.setContentText("complete all your information!");
             alert.showAndWait();
         }else if(!userPassword.getText().equals(confirmPassword.getText())){
-            alert.setContentText("Password doesn't match the confirmation!");
+            alert.setContentText("retype the password");
             alert.showAndWait();
         }else{
             if(ClientApp.session == null){
@@ -45,30 +45,26 @@ public class Signup implements Initializable {
             }
             ClientApp.session.openConnection();
             if(ClientApp.session.connected){
-                boolean regResult = ClientApp.session.playerSignup(userName.getText(), userPassword.getText());
+                boolean regResult = ClientApp.session.signup(userName.getText(), userPassword.getText());
                 if(regResult){
                     Alert success = new Alert(AlertType.INFORMATION);
                     success.setTitle("Registration succeded!");
-                    success.setContentText("Congratulations! you've registered successfully!\nYou will be redirected to login page");
+                    success.setContentText("Congratulations!");
                     success.showAndWait();
-                    ClientApp.primaryStage.hide();
-                    ClientApp.primaryStage.setScene(client.ClientApp.signIn);
-                    ClientApp.primaryStage.show();
+                    ClientApp.primarystage.hide();
+                    ClientApp.primarystage.setScene(client.ClientApp.signin);
+                    ClientApp.primarystage.show();
                 }else{
-                    alert.setContentText("Registration failed! username already existed!");
+                    alert.setContentText(" username already existed!");
                     alert.showAndWait();
                 }
             }else{
-                alert.setContentText("Cannot establish connection with server");
+                alert.setContentText("connection can't completed with server");
                 alert.showAndWait();
             }
             ClientApp.session.closeConnection();
         }
     }
-    @FXML private void handleButton_back_Action(ActionEvent event) {
-        ClientApp.primaryStage.hide();
-        ClientApp.primaryStage.setScene(ClientApp.signIn);
-        ClientApp.primaryStage.show();
-    }
+   
     
 }

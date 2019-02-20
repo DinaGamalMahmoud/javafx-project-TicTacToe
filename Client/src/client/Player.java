@@ -10,7 +10,7 @@ public class Player {
 
 
     public Player(){}
-    public Player(String username, int score, String password) {
+    public Player(String username, String password, int score) {
 
         this.username = username;
         this.password = password;

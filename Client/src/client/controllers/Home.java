@@ -2,10 +2,7 @@
 package client.controllers;
 
 
-import assets.*;
-import client.*;
-import client.network.Session;
-import java.net.URL;
+
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,6 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import assets.*;
+import client.*;
+import client.network.Session;
+import java.net.URL;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -49,20 +50,19 @@ public class Home implements Initializable {
         colStatus.setCellValueFactory(
             new PropertyValueFactory<>("status")
         );
-        primaryStage = ClientApp.primaryStage;
-        allPlayersTable.getSelectionModel().selectedIndexProperty().addListener(new RowSelectChangeListener());        
+        primaryStage = ClientApp.primarystage;
+        allPlayersTable.getSelectionModel().selectedIndexProperty().addListener(new table());        
     }   
-    private class RowSelectChangeListener implements ChangeListener {
+    private class table implements ChangeListener {
         @Override
         public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-            opponentInfo();
         }
     };
-    @FXML protected void handleButton_invite_Action(ActionEvent event) {
+    @FXML protected void invite(ActionEvent event) {
         if(allPlayersTable.getSelectionModel().getSelectedItem()!= null){
             if(allPlayersTable.getSelectionModel().getSelectedItem().getStatus().equals(Status.ONLINE)){
-                ClientApp.session.requestGame(allPlayersTable.getSelectionModel().getSelectedItem().getUsername());
-                ClientApp.gameController.txt_area.setText("");
+                ClientApp.session.requestgame(allPlayersTable.getSelectionModel().getSelectedItem().getUsername());
+                ClientApp.gameController.para.setText("");
             }else{
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Player not available");
@@ -72,24 +72,22 @@ public class Home implements Initializable {
             }
         }
     };
-    @FXML protected void handleButton_logout_Action(ActionEvent event) {
+    @FXML protected void logout(ActionEvent event) {
         ClientApp.session.closeConnection();
-        primaryStage.setScene(client.ClientApp.signIn);
+        primaryStage.setScene(client.ClientApp.signin);
     }
-    @FXML protected void handleButton_arcade_Action(ActionEvent event) {
-        ClientApp.session.playWithAI();
-        ClientApp.gameController.txt_area.setText("");
+    @FXML protected void ai(ActionEvent event) {
+        ClientApp.session.AI();
+        ClientApp.gameController.para.setText("");
         primaryStage.setScene(client.ClientApp.game);
         ClientApp.gameController.resetScene();
     }
-    @FXML public void playerInfo() {
+    @FXML public void player() {
         playerName.setText(ClientApp.session.player.getUsername());
         playerScore.setText(Integer.toString(ClientApp.session.player.getScore()));
         allPlayersTable.getSelectionModel().selectFirst();
     }
-    @FXML protected void opponentInfo() {
-      
-    }
+   
     public void PlayersTable(){
         playersData.clear(); 
         Session.allPlayers.entrySet().forEach((player) -> {
@@ -97,16 +95,16 @@ public class Home implements Initializable {
         });
         allPlayersTable.setItems(playersData);
     }
-    public void showAlert(String playerName){
+    public void alert(String playerName){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, playerName+" wants to play with you", ButtonType.NO, ButtonType.YES);
         if (alert.showAndWait().get() == ButtonType.YES) {
-            ClientApp.session.sendResponse(true);
+            ClientApp.session.sendresponse(true);
             ClientApp.gameController.resetScene();
-            ClientApp.primaryStage.setScene(client.ClientApp.game);
+            ClientApp.primarystage.setScene(client.ClientApp.game);
             System.out.println("play again");
             ClientApp.gameController.img = new Image(getClass().getResourceAsStream("/images/o.png"));
         }else{
-            ClientApp.session.sendResponse(false);
+            ClientApp.session.sendresponse(false);
         }
     }
 }

@@ -31,102 +31,100 @@ public class Game implements Initializable {
      * Initializes the controller class.
      */
     @FXML public Button b1,b2,b3,b4,b5,b6,b7,b8,b9,send,surrend;
-    @FXML public TextField txt_field;
+    @FXML public TextField text;
     @FXML public int flag1=0,flag2=0,flag3=0,flag4=0,flag5=0,flag6=0,flag7=0,flag8=0,flag9=0;
     @FXML public String src;
     @FXML public Image img;
     @FXML public GridPane gridPane2;
     @FXML private Label player1Name,player2Name,massge,time;
-    @FXML public TextArea txt_area;
+    @FXML public TextArea para;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        txt_area.setEditable(false);
-        txt_area.setWrapText(true);
+        para.setEditable(false);
+        para.setWrapText(true);
     }   
     public void resetScene(){
         player1Name.setText(ClientApp.session.player.getUsername());
         player2Name.setText(ClientApp.session.getname());
         flag1=flag2=flag3=flag4=flag5=flag6=flag7=flag8=flag9=0;
     }
-    @FXML protected void handleButton_send_Action(ActionEvent event) {
-        ClientApp.session.sendChatMessage(txt_field.getText());
-        txt_field.setText("");
+    @FXML protected void send(ActionEvent event) {
+        ClientApp.session.send(text.getText());
+        text.setText("");
     }
-    @FXML protected void handleButton1Action(ActionEvent event) {
+    @FXML protected void button1(ActionEvent event) {
         if(flag1==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("0", "0");
+            ClientApp.session.move("0", "0");
             b1.setGraphic(new ImageView(img));
             flag1=1;
         }
     }
-    @FXML protected void handleButton2Action(ActionEvent event) {
+    @FXML protected void button2(ActionEvent event) {
         if(flag2==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("0", "1");        
+            ClientApp.session.move("0", "1");        
             b2.setGraphic(new ImageView(img));
             flag2=1;
         }
     }
-    @FXML protected void handleButton3Action(ActionEvent event) {
+    @FXML protected void button3(ActionEvent event) {
         if(flag3==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("0", "2");
+            ClientApp.session.move("0", "2");
             b3.setGraphic(new ImageView(img));
             flag3=1;
         }
     }
-    @FXML protected void handleButton4Action(ActionEvent event) {
+    @FXML protected void button4(ActionEvent event) {
         if(flag4==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("1", "0");
+            ClientApp.session.move("1", "0");
             b4.setGraphic(new ImageView(img));
             flag4=1;
         }
     }
-    @FXML protected void handleButton5Action(ActionEvent event) {
+    @FXML protected void button5(ActionEvent event) {
         if(flag5==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("1", "1");
+            ClientApp.session.move("1", "1");
             b5.setGraphic(new ImageView(img));
             flag5=1;
         }
     }
-    @FXML protected void handleButton6Action(ActionEvent event) {
+    @FXML protected void button6(ActionEvent event) {
         if(flag6==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("1", "2");
+            ClientApp.session.move("1", "2");
             b6.setGraphic(new ImageView(img));
             flag6=1;
         }
     }
-    @FXML protected void handleButton7Action(ActionEvent event) {
+    @FXML protected void button7(ActionEvent event) {
        if(flag7==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("2", "0");
+            ClientApp.session.move("2", "0");
             b7.setGraphic(new ImageView(img));
             flag7=1;
         }
     }
-    @FXML protected void handleButton8Action(ActionEvent event) {
+    @FXML protected void button8(ActionEvent event) {
        if(flag8==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("2", "1");
+            ClientApp.session.move("2", "1");
             b8.setGraphic(new ImageView(img));
             flag8=1;
         }
     }
-    @FXML protected void handleButton9Action(ActionEvent event) {
+    @FXML protected void button9(ActionEvent event) {
         if(flag9==0 && ClientApp.session.myTurn){
-            ClientApp.session.makeAMove("2", "2");
+            ClientApp.session.move("2", "2");
             b9.setGraphic(new ImageView(img));
             flag9=1;
         }
     }
     
-    @FXML protected void handleButtonPause(ActionEvent event) {
+    @FXML protected void pause(ActionEvent event) {
         
             ClientApp.session.pause();
     }
    
   @FXML  public void saveAsPng() {
     try {
-        
-        
-        FXMLLoader gameLoader = new FXMLLoader();
+                FXMLLoader gameLoader = new FXMLLoader();
         gameLoader.setLocation(getClass().getResource("/gui/GameView.fxml"));
         Parent gameParent = gameLoader.load();
         game = new Scene(gameParent, 900, 600);
