@@ -1,19 +1,12 @@
 
 .mainFxmlClass {
-       -fx-background-image: url("../images/wood2.jpg") ;
+       -fx-background-image: url("../images/texture.jpg") ;
      -fx-background-repeat: no-repeat;
      -fx-background-position:left  ;
      -fx-margin-top: 50px;
 }
 
-#opponent{
-     
- 
-     -fx-background-repeat: no-repeat;
-     
-      -fx-background-size:stretch;
-     -fx-margin-top: 50px;
-}
+
 .label{
     
      -fx-font-size: 15px;
@@ -40,19 +33,6 @@
 .button:hover {
      -fx-background-color:linear-gradient(#298040, #64a772),linear-gradient(#298040, #64a772);
 }
-#palyerImg{
-    -fx-border-width: 2;
-    -fx-border-color: gray;
-    -fx-background-color: gainsboro;
-    
-}
-#human{
-   
-     -fx-background-repeat: no-repeat;
-     
-      -fx-background-size:stretch;
-     -fx-margin-top: 50px;
-}
 
 #computer{
     -fx-border-width: 2;
@@ -70,13 +50,7 @@
    -fx-text-fill: whitesmoke;
 
 }
-#opponentName{
-    -fx-font-size: 25px;
-   -fx-font-family: "Arial Black";
-   -fx-font-weight: bold;
-   -fx-text-fill:whitesmoke;
 
-}
 #lbl,#playerScore,#opponentScore{
     -fx-font-size: 20px;
    -fx-font-family: "Arial Black";
@@ -84,7 +58,7 @@
    -fx-fill: white;
 
 }
-#arcade{
+#ai{
     -fx-background-color: 
         linear-gradient(#298040, #64a772),
         linear-gradient(#298040, #64a772),
@@ -100,7 +74,7 @@
     -fx-margin-Top:50px;
     
 }
-#arcade:hover {
+#ai:hover {
     
      -fx-background-color:   linear-gradient(#298040, #64a772),   linear-gradient(#298040, #64a772);
 }
@@ -123,16 +97,4 @@
     
       -fx-background-color:   linear-gradient(#298040, #64a772),   linear-gradient(#298040, #64a772);
 
-}
-#img{
-     -fx-background-radius:50,50;	
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-}
-#opponentImgView{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-background-radius:50,50;
-}
-#playerImgView{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-border-radius:50,50;
 }

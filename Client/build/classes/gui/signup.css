@@ -1,18 +1,12 @@
 
 #root {
-     -fx-background-image: url("../images/wood2.jpg") ;
+     -fx-background-image: url("../images/texture.jpg") ;
      -fx-background-repeat: no-repeat;
      
       -fx-background-size:stretch;
      -fx-margin-top: 50px;
 }
-#img {
-     -fx-background-image: url("../images/tic_tac_toe.png") ;
-     -fx-background-repeat: no-repeat;
-     
-      -fx-background-size:stretch;
-     -fx-margin-top: 50px;
-}
+
 
 .button {
     -fx-background-color: 

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane id="root" alignment="center" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.SignupController">
+<GridPane id="root" alignment="center" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.Signup">
     <padding> 
         <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
@@ -29,8 +29,8 @@
         <PasswordField fx:id="confirmPassword" GridPane.columnIndex="1" GridPane.rowIndex="8" />
         <HBox alignment="bottom_right" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <HBox alignment="bottom_left" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-         <Button onAction="#handleButton_back_Action" text="Back" textFill="#084315" GridPane.rowIndex="9" />
-         <Button defaultButton="true" onAction="#handleButtonAction" text="Sign up" textFill="#64a772" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+         <Button onAction="#signin" text="Back" textFill="#084315" GridPane.rowIndex="9" />
+         <Button defaultButton="true" onAction="#signin" text="Sign up" textFill="#64a772" GridPane.columnIndex="1" GridPane.rowIndex="9" />
       <columnConstraints>
          <ColumnConstraints />
          <ColumnConstraints />

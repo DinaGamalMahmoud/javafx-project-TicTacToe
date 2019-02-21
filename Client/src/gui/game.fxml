@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane id="GridPane2" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.GameController">
+<GridPane id="GridPane2" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.Game">
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
@@ -28,55 +28,55 @@
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b1" onAction="#handleButton1Action" /> 
+                <Button fx:id="b1" onAction="#button1" /> 
             </HBox> 
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="0"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b2" onAction="#handleButton2Action" />  
+                <Button fx:id="b2" onAction="#button2" />  
             </HBox> 
             <HBox GridPane.columnIndex="2" GridPane.rowIndex="0"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b3" onAction="#handleButton3Action" />   
+                <Button fx:id="b3" onAction="#button3" />   
             </HBox> 
             <HBox GridPane.columnIndex="0" GridPane.rowIndex="1"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b4" onAction="#handleButton4Action" />   
+                <Button fx:id="b4" onAction="#button4" />   
             </HBox> 
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="1"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b5" onAction="#handleButton5Action" />   
+                <Button fx:id="b5" onAction="#button5" />   
             </HBox> 
             <HBox GridPane.columnIndex="2" GridPane.rowIndex="1"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b6" onAction="#handleButton6Action" />   
+                <Button fx:id="b6" onAction="#button6" />   
             </HBox> 
             <HBox GridPane.columnIndex="0" GridPane.rowIndex="2"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b7" onAction="#handleButton7Action" />   
+                <Button fx:id="b7" onAction="#button7" />   
             </HBox> 
             <HBox GridPane.columnIndex="1" GridPane.rowIndex="2"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b8" onAction="#handleButton8Action" />   
+                <Button fx:id="b8" onAction="#button8" />   
             </HBox> 
             <HBox GridPane.columnIndex="2" GridPane.rowIndex="2"> 
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Button fx:id="b9" onAction="#handleButton9Action" />   
+                <Button fx:id="b9" onAction="#button8" />   
             </HBox>
          <columnConstraints>
             <ColumnConstraints />
@@ -96,7 +96,7 @@
             <Label fx:id="player1Name" text=" XXXX" GridPane.columnIndex="1" />
             <Label fx:id="player2Name" text=" XXXX" GridPane.columnIndex="3" />
             <Label fx:id="vs" alignment="center" text="        vs" GridPane.columnIndex="2" />
-         <Button fx:id="pause" onAction="#handleButtonPause" mnemonicParsing="false" prefHeight="37.0" prefWidth="104.0" text="pause" GridPane.rowIndex="2" />
+         <Button fx:id="pause" onAction="#pause" mnemonicParsing="false" prefHeight="37.0" prefWidth="104.0" text="pause" GridPane.rowIndex="2" />
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
@@ -134,7 +134,7 @@
         <TextArea fx:id="txt_area" prefHeight="357.0" prefWidth="283.0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
         <TextField fx:id="txt_field" prefWidth="220" GridPane.columnIndex="0" GridPane.rowIndex="3" />
         <HBox alignment="bottom_right" spacing="1" GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <Button fx:id="send" defaultButton="true" onAction="#handleButton_send_Action" text="Send" />
+            <Button fx:id="send" defaultButton="true" onAction="#send" text="Send" />
         </HBox>
       <columnConstraints>
          <ColumnConstraints />

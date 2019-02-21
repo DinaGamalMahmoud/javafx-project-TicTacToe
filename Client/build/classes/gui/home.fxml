@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane id="home" hgap="5" styleClass="mainFxmlClass" vgap="5" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.HomeController">
+<GridPane id="home" hgap="5" styleClass="mainFxmlClass" vgap="5" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.controllers.Home">
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
     </padding>
@@ -78,10 +78,10 @@
                 <Insets bottom="5" left="10" right="10" top="5" />
             </padding>
             <HBox spacing="1" GridPane.columnIndex="0" GridPane.rowIndex="0">
-                <Button fx:id="invite" onAction="#handleButton_invite_Action" text="    Invite Player    " />
+                <Button fx:id="invite" onAction="#invite" text="    Invite Player    " />
             </HBox>
             <HBox spacing="1" GridPane.columnIndex="1" GridPane.rowIndex="0">
-                <Button fx:id="arcade" onAction="#handleButton_arcade_Action" text="Play VS Computer" />
+                <Button fx:id="arcade" onAction="#ai" text="Play VS Computer" />
             </HBox>
          <columnConstraints>
             <ColumnConstraints />
@@ -155,7 +155,7 @@
         <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
         </padding>
-        <Label text="Choose your opponent" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0" />
+        <Label text="Choose player" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0" />
         <Label text="                               " GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <TableView fx:id="allPlayersTable" prefHeight="500" styleClass="table" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="1">
             <columns>
@@ -168,7 +168,7 @@
             </columns>    
         </TableView>
         <HBox spacing="1" GridPane.columnIndex="2" GridPane.rowIndex="2">
-            <Button fx:id="logout" onAction="#handleButton_logout_Action" text="logout" />
+            <Button fx:id="logout" onAction="#logout" text="logout" />
         </HBox>
       <columnConstraints>
          <ColumnConstraints />
