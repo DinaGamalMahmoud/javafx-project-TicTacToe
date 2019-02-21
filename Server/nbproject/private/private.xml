@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/database/DBConnection.java</file>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/server/controllers/Controlserver.java</file>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/server/network/Server.java</file>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/server/Game.java</file>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/server/ServerApp.java</file>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/server/network/Session.java</file>
+            <file>file:/home/dina/Desktop/java_project_xogame_tictactoe/Server/src/server/AIGame.java</file>
+        </group>
     </open-files>
 </project-private>
