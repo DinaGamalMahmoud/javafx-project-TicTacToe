@@ -13,7 +13,7 @@ import java.util.Map;
 import database.SavedGame;
 import server.AIGame;
 import server.Game;
-import server.ServerApp;
+import server.ServerView;
 import static server.network.Server.allPlayers;
 
 
@@ -124,7 +124,7 @@ public class Session extends Thread{
     private void logout(){
         connectedPlayers.remove(this);
         Server.allPlayers.get(player.getUsername()).setStatus(Status.OFFLINE);
-        ServerApp.serverController.PlayersTable();
+        ServerView.serverController.PlayersTable();
         notify("status", Server.allPlayers.get(player.getUsername()).getStatus());
         closeConnection();
     }
@@ -137,7 +137,7 @@ public class Session extends Thread{
                 newPlayer.setStatus(Status.OFFLINE);
                 showplayer(newPlayer);
                 Server.allPlayers.put(username, newPlayer);
-                ServerApp.serverController.PlayersTable();
+                ServerView.serverController.PlayersTable();
             }
         }
         else{
@@ -174,7 +174,7 @@ public class Session extends Thread{
             notification.setData("value", value);
             session.getValue().sendmsg(notification);
         });
-        ServerApp.serverController.PlayersTable();
+        ServerView.serverController.PlayersTable();
     }
     
     private void showplayer(Player newPlayer){
@@ -190,11 +190,11 @@ public class Session extends Thread{
         if(connectedPlayers.containsKey(incoming.getData("destination"))){
             connectedPlayers.get(incoming.getData("destination")).sendmsg(outgoing);
             
-            ServerApp.server.allPlayers.get(player.getUsername()).setStatus(Status.PLAYING);
+            ServerView.server.allPlayers.get(player.getUsername()).setStatus(Status.PLAYING);
             Session.connectedPlayers.get(player.getUsername()).notify("status", Status.PLAYING);
-            ServerApp.server.allPlayers.get(incoming.getData("destination")).setStatus(Status.PLAYING);
+            ServerView.server.allPlayers.get(incoming.getData("destination")).setStatus(Status.PLAYING);
             Session.connectedPlayers.get(incoming.getData("destination")).notify("status", Status.PLAYING);
-            ServerApp.serverController.PlayersTable();
+            ServerView.serverController.PlayersTable();
         }
     }
     public void saveGame(Message incoming){
@@ -202,11 +202,11 @@ public class Session extends Thread{
         if(connectedPlayers.containsKey(incoming.getData("destination"))){
             connectedPlayers.get(incoming.getData("destination")).sendmsg(outgoing);
             
-            ServerApp.server.allPlayers.get(player.getUsername()).setStatus(Status.ONLINE);
+            ServerView.server.allPlayers.get(player.getUsername()).setStatus(Status.ONLINE);
             Session.connectedPlayers.get(player.getUsername()).notify("status", Status.ONLINE);
-            ServerApp.server.allPlayers.get(incoming.getData("destination")).setStatus(Status.ONLINE);
+            ServerView.server.allPlayers.get(incoming.getData("destination")).setStatus(Status.ONLINE);
             Session.connectedPlayers.get(incoming.getData("destination")).notify("status", Status.ONLINE);
-            ServerApp.serverController.PlayersTable();
+            ServerView.serverController.PlayersTable();
             SavedGame sg = new SavedGame();
             sg.player1 = player.getUsername();
             sg.player2 = incoming.getData("destination");
@@ -234,11 +234,11 @@ public class Session extends Thread{
                 connectedPlayers.get(incoming.getData("destination")).game=game;
             }
         }else{
-            ServerApp.server.allPlayers.get(player.getUsername()).setStatus(Status.ONLINE);
+            ServerView.server.allPlayers.get(player.getUsername()).setStatus(Status.ONLINE);
             Session.connectedPlayers.get("destination").notify("status", Status.ONLINE);
-            ServerApp.server.allPlayers.get(player.getUsername()).setStatus(Status.ONLINE);
+            ServerView.server.allPlayers.get(player.getUsername()).setStatus(Status.ONLINE);
             Session.connectedPlayers.get("destination").notify("status", Status.ONLINE);
-            ServerApp.serverController.PlayersTable();
+            ServerView.serverController.PlayersTable();
         }
         Message outgoing=new Message(msgType.GAME_RESPONSE,"source",player.getUsername());
         outgoing.setData("response", incoming.getData("response"));
@@ -248,9 +248,9 @@ public class Session extends Thread{
     }
     private void AIgame(){
         aiGame = new AIGame(player.getUsername());
-        ServerApp.server.allPlayers.get(player.getUsername()).setStatus(Status.PLAYING);
+        ServerView.server.allPlayers.get(player.getUsername()).setStatus(Status.PLAYING);
         Session.connectedPlayers.get(player.getUsername()).notify("status", Status.PLAYING);
-        ServerApp.serverController.PlayersTable();
+        ServerView.serverController.PlayersTable();
     }
     private void handleMove(Message message) {
          if(message.getData("target")!=null&&message.getData("target").equals("computer")){
@@ -270,16 +270,16 @@ public class Session extends Thread{
                         Message lose=new Message(msgType.GAME_OVER,"line","You lose !");
                         String username=player.getUsername();
                         database.Players.updatewin(username);
-                        ServerApp.server.allPlayers.get(this.player.getUsername()).setScore(ServerApp.server.allPlayers.get(this.player.getUsername()).getScore()+10);
-                        ServerApp.serverController.PlayersTable();
+                        ServerView.server.allPlayers.get(this.player.getUsername()).setScore(ServerView.server.allPlayers.get(this.player.getUsername()).getScore()+10);
+                        ServerView.serverController.PlayersTable();
                         lose.setData("x", message.getData("x"));
                         lose.setData("y", message.getData("y"));
                         connectedPlayers.get(game.incMove%2==1?game.getPlayer1():game.getPlayer2()).sendmsg(lose);
-                        ServerApp.server.allPlayers.get(game.getPlayer1()).setStatus(Status.ONLINE);
+                        ServerView.server.allPlayers.get(game.getPlayer1()).setStatus(Status.ONLINE);
                         Session.connectedPlayers.get(game.getPlayer1()).notify("status", Status.ONLINE);
-                        ServerApp.server.allPlayers.get(game.getPlayer2()).setStatus(Status.ONLINE);
+                        ServerView.server.allPlayers.get(game.getPlayer2()).setStatus(Status.ONLINE);
                         Session.connectedPlayers.get(game.getPlayer2()).notify("status", Status.ONLINE);
-                        ServerApp.serverController.PlayersTable();
+                        ServerView.serverController.PlayersTable();
                         game=null;
                         break;
                     case "draw":
@@ -287,16 +287,16 @@ public class Session extends Thread{
                         Message draw=new Message(msgType.GAME_OVER,"line","Draw !");
                         String username2=player.getUsername();
                         database.Players.updatedraw(username2);
-                        ServerApp.server.allPlayers.get(this.player.getUsername()).setScore(ServerApp.server.allPlayers.get(this.player.getUsername()).getScore()+5);
-                        ServerApp.serverController.PlayersTable();
+                        ServerView.server.allPlayers.get(this.player.getUsername()).setScore(ServerView.server.allPlayers.get(this.player.getUsername()).getScore()+5);
+                        ServerView.serverController.PlayersTable();
                         draw.setData("x", message.getData("x"));
                         draw.setData("y", message.getData("y"));
                         connectedPlayers.get(game.incMove%2==1?game.getPlayer1():game.getPlayer2()).sendmsg(draw);
-                        ServerApp.server.allPlayers.get(game.getPlayer1()).setStatus(Status.ONLINE);
+                        ServerView.server.allPlayers.get(game.getPlayer1()).setStatus(Status.ONLINE);
                         Session.connectedPlayers.get(game.getPlayer1()).notify("status", Status.ONLINE);
-                        ServerApp.server.allPlayers.get(game.getPlayer2()).setStatus(Status.ONLINE);
+                        ServerView.server.allPlayers.get(game.getPlayer2()).setStatus(Status.ONLINE);
                         Session.connectedPlayers.get(game.getPlayer2()).notify("status", Status.ONLINE);
-                        ServerApp.serverController.PlayersTable();
+                        ServerView.serverController.PlayersTable();
                         game=null;
                         break;
                 }

@@ -50,7 +50,7 @@ public class Home implements Initializable {
         colStatus.setCellValueFactory(
             new PropertyValueFactory<>("status")
         );
-        primaryStage = Client.primarystage;
+        primaryStage = ClientView.primarystage;
         allPlayersTable.getSelectionModel().selectedIndexProperty().addListener(new table());        
     }   
     private class table implements ChangeListener {
@@ -61,8 +61,8 @@ public class Home implements Initializable {
     @FXML protected void invite(ActionEvent event) {
         if(allPlayersTable.getSelectionModel().getSelectedItem()!= null){
             if(allPlayersTable.getSelectionModel().getSelectedItem().getStatus().equals(Status.ONLINE)){
-                Client.session.requestgame(allPlayersTable.getSelectionModel().getSelectedItem().getUsername());
-                Client.gameController.para.setText("");
+                ClientView.session.requestgame(allPlayersTable.getSelectionModel().getSelectedItem().getUsername());
+                ClientView.gameController.para.setText("");
             }else{
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setTitle("Player not available");
@@ -73,18 +73,18 @@ public class Home implements Initializable {
         }
     };
     @FXML protected void logout(ActionEvent event) {
-        Client.session.closeConnection();
-        primaryStage.setScene(client.Client.signin);
+        ClientView.session.closeConnection();
+        primaryStage.setScene(client.ClientView.signin);
     }
     @FXML protected void ai(ActionEvent event) {
-        Client.session.AI();
-        Client.gameController.para.setText("");
-        primaryStage.setScene(client.Client.game);
-        Client.gameController.resetScene();
+        ClientView.session.AI();
+        ClientView.gameController.para.setText("");
+        primaryStage.setScene(client.ClientView.game);
+        ClientView.gameController.resetScene();
     }
     @FXML public void player() {
-        playerName.setText(Client.session.player.getUsername());
-        playerScore.setText(Integer.toString(Client.session.player.getScore()));
+        playerName.setText(ClientView.session.player.getUsername());
+        playerScore.setText(Integer.toString(ClientView.session.player.getScore()));
         allPlayersTable.getSelectionModel().selectFirst();
     }
    
@@ -98,13 +98,13 @@ public class Home implements Initializable {
     public void alert(String playerName){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, playerName+" wants to play with you", ButtonType.NO, ButtonType.YES);
         if (alert.showAndWait().get() == ButtonType.YES) {
-            Client.session.sendresponse(true);
-            Client.gameController.resetScene();
-            Client.primarystage.setScene(client.Client.game);
+            ClientView.session.sendresponse(true);
+            ClientView.gameController.resetScene();
+            ClientView.primarystage.setScene(client.ClientView.game);
             System.out.println("play again");
-            Client.gameController.img = new Image(getClass().getResourceAsStream("/images/o.png"));
+            ClientView.gameController.img = new Image(getClass().getResourceAsStream("/images/o.png"));
         }else{
-            Client.session.sendresponse(false);
+            ClientView.session.sendresponse(false);
         }
     }
 }

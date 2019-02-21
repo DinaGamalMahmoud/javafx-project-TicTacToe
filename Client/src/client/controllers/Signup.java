@@ -1,7 +1,7 @@
 
 package client.controllers;
 
-import client.Client;
+import client.ClientView;
 import client.network.Session;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,20 +40,20 @@ public class Signup implements Initializable {
             alert.setContentText("retype the password");
             alert.showAndWait();
         }else{
-            if(Client.session == null){
-                Client.session = new Session("192.168.1.98", 5555);
+            if(ClientView.session == null){
+                ClientView.session = new Session("192.168.1.98", 5555);
             }
-            Client.session.openConnection();
-            if(Client.session.connected){
-                boolean regResult = Client.session.signup(userName.getText(), userPassword.getText());
+            ClientView.session.openConnection();
+            if(ClientView.session.connected){
+                boolean regResult = ClientView.session.signup(userName.getText(), userPassword.getText());
                 if(regResult){
                     Alert success = new Alert(AlertType.INFORMATION);
                     success.setTitle("Registration succeded!");
                     success.setContentText("Congratulations!");
                     success.showAndWait();
-                    Client.primarystage.hide();
-                    Client.primarystage.setScene(client.Client.signin);
-                    Client.primarystage.show();
+                    ClientView.primarystage.hide();
+                    ClientView.primarystage.setScene(client.ClientView.signin);
+                    ClientView.primarystage.show();
                 }else{
                     alert.setContentText(" username already existed!");
                     alert.showAndWait();
@@ -62,7 +62,7 @@ public class Signup implements Initializable {
                 alert.setContentText("connection can't completed with server");
                 alert.showAndWait();
             }
-            Client.session.closeConnection();
+            ClientView.session.closeConnection();
         }
     }
    

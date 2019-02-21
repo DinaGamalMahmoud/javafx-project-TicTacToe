@@ -105,9 +105,9 @@ public class AIGame {
             message.setData("line", stats);
             Session.connectedPlayers.get(player).sendmsg(message); 
             
-            ServerApp.server.allPlayers.get(player).setStatus(Status.ONLINE);
+            ServerView.server.allPlayers.get(player).setStatus(Status.ONLINE);
             Session.connectedPlayers.get(player).notify("status", Status.ONLINE);
-            ServerApp.serverController.PlayersTable();
+            ServerView.serverController.PlayersTable();
         } else if (this.hasOWon()) {
             message.setType(msgType.GAME_OVER);
             stats = "You win !";
@@ -120,13 +120,13 @@ public class AIGame {
             Session.connectedPlayers.get(player).sendmsg(message); 
           
             database.Players.updatedraw(player);
-            int score = ServerApp.server.allPlayers.get(player).getScore();
-            ServerApp.server.allPlayers.get(player).setScore(score+5);
+            int score = ServerView.server.allPlayers.get(player).getScore();
+            ServerView.server.allPlayers.get(player).setScore(score+5);
             Session.connectedPlayers.get(player).notify("score", String.valueOf(score+5));
             
-            ServerApp.server.allPlayers.get(player).setStatus(Status.ONLINE);
+            ServerView.server.allPlayers.get(player).setStatus(Status.ONLINE);
             Session.connectedPlayers.get(player).notify("status", Status.ONLINE);
-            ServerApp.serverController.PlayersTable();
+            ServerView.serverController.PlayersTable();
         } else {
             stats = "gameon";
             Session.connectedPlayers.get(player).sendmsg(message); 

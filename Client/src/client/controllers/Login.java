@@ -2,7 +2,7 @@
 package client.controllers;
 
 import client.network.Session;
-import client.Client;
+import client.ClientView;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -22,20 +22,20 @@ public class Login implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        primaryStage = Client.primarystage;
+        primaryStage = ClientView.primarystage;
     }
     @FXML protected void login(ActionEvent event) {
-        if(Client.session == null){
-            Client.session = new Session("192.168.1.98", 5555);
+        if(ClientView.session == null){
+            ClientView.session = new Session("192.168.1.98", 5555);
         }
-        Client.session.openConnection();
-        if(Client.session.connected){
-            if(Client.session.login(username.getText(), password.getText())){
+        ClientView.session.openConnection();
+        if(ClientView.session.connected){
+            if(ClientView.session.login(username.getText(), password.getText())){
                 primaryStage.hide();
-                primaryStage.setScene(client.Client.home);
+                primaryStage.setScene(client.ClientView.home);
                 primaryStage.show();
-                Client.homeController.PlayersTable();
-                Client.homeController.player();
+                ClientView.homeController.PlayersTable();
+                ClientView.homeController.player();
             }else{
                 Alert alert = new Alert(AlertType.ERROR);
                 alert.setTitle("TicTacToe");
@@ -53,7 +53,7 @@ public class Login implements Initializable {
     }
     @FXML protected void signup(ActionEvent event) {
         primaryStage.hide();
-        primaryStage.setScene(client.Client.signup);
+        primaryStage.setScene(client.ClientView.signup);
         primaryStage.show();
     }
     public void endconnection(){

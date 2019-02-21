@@ -45,8 +45,8 @@ public class Controlserver implements Initializable {
 
     @FXML
     protected void turnon(ActionEvent t) {
-        if (!ServerApp.server.running) {
-            if (ServerApp.server.startServer(5555)) {
+        if (!ServerView.server.running) {
+            if (ServerView.server.startServer(5555)) {
                 PlayersTable();
 
             } else {
@@ -56,7 +56,7 @@ public class Controlserver implements Initializable {
                 alert.showAndWait();
             }
         } else {
-            ServerApp.server.stopServer();
+            ServerView.server.stopServer();
 
             playersList.clear();
 
@@ -67,7 +67,7 @@ public class Controlserver implements Initializable {
        // if (!ServerApp.server.running) {
             playersList.clear();
     //    } else {
-            ServerApp.server.allPlayers.entrySet().forEach((player) -> {
+            ServerView.server.allPlayers.entrySet().forEach((player) -> {
                 playersList.add(player.getValue());
                   tableView.setItems(playersList);
             });    

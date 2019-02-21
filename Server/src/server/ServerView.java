@@ -10,7 +10,7 @@ import server.controllers.Controlserver;
 import server.network.Server;
 
 
-public class ServerApp extends Application {
+public class ServerView extends Application {
     public static Server server = new Server();
     public static Stage primaryStage ;
     public static Scene serverScene;
